@@ -31,52 +31,54 @@ OR OTHER DEALINGS IN THE SOFTWARE.
 
 ## Background
 
-Implementation inheritance can lead to brittle and hard-to-maintain code. By enforcing the use of the `@final` decorator, this plugin aims to encourage composition over inheritance, promoting better software design principles.
-
-[yegor256 blog post](https://www.yegor256.com/2016/09/13/inheritance-is-procedural.html)
+In Python modules, having multiple classes in a single file can often indicate overly complex code or an unclear separation of concerns. The flake8-one-class plugin enforces a single public class per module to encourage modular and maintainable code design. Private (internal) classes are allowed but are intended for module-level encapsulation only.
 
 ## Installation
 
-To install `flake8-one-class`, you can use `pip`:
+Install flake8-one-class using pip:
 
-```bash
+```
 pip install flake8-one-class
 ```
 
 ## Usage
 
-After installing the plugin, flake8 will automatically use it when you run the following command:
+After installation, flake8-one-class will automatically run with flake8:
 
-bash
-
+```
 flake8 your_project_directory
+```
 
-The plugin will check each class definition to ensure it has a @final decorator. If a class is missing the @final decorator, an error will be reported.
+This plugin checks each module for multiple public class definitions. If more than one public class is detected, an error is raised.
 
 ## Example
 
 Given the following Python code:
 
 ```python
-class MyClass:
+class Animal:
+    pass
+
+class Plant:
     pass
 ```
 
 Running flake8 will produce the following error:
 
 ```
-your_file.py:1:1: FOC100 class must be final
+your_file.py:1:1: FOC100 found module with more than one public class
 ```
 
-Adding the `@final` decorator will resolve the error:
+Using only one public class in the module will resolve the error:
 
 ```python
-from typing import final
+class Animal:
+    pass
 
-@final
-class MyClass:
+class _Helper:  # private class is allowed
     pass
 ```
+
 
 ## License
 
