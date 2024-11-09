@@ -20,23 +20,24 @@
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
 # OR OTHER DEALINGS IN THE SOFTWARE.
 
-from collections.abc import Generator
+import ast
 from typing import final
-
-from flake8_one_class.visitor import ModuleVisitor
 
 
 @final
-class Plugin:
-    """Flake8 plugin."""
+class ModuleVisitor(ast.NodeVisitor):
+    """Class visitor for checking class count in module."""
 
-    def __init__(self, tree) -> None:
+    def __init__(self) -> None:
         """Ctor."""
-        self._tree = tree
+        self.problems: list[int] = []
 
-    def run(self) -> Generator[tuple[int, int, str, type], None, None]:
-        """Entry."""
-        visitor = ModuleVisitor()
-        visitor.visit(self._tree)
-        for _ in visitor.problems:  # noqa: WPS526
-            yield (1, 0, 'FOC100 found module with more than one public class', type(self))
+    def visit_Module(self, node) -> None:  # noqa: N802, WPS231, C901. Flake8 plugin API
+        """Visit by modules."""
+        classes_count = 0
+        for elem in node.body:
+            if isinstance(elem, ast.ClassDef) and not elem.name.startswith('_'):
+                classes_count += 1
+            if classes_count > 1:
+                self.problems.append(1)
+        self.generic_visit(node)
