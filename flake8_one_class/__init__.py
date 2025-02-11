@@ -19,3 +19,11 @@
 # DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
 # OR OTHER DEALINGS IN THE SOFTWARE.
+
+"""Flake8 one class plugin.
+
+In Python modules, having multiple classes in a single file can often indicate
+overly complex code or an unclear separation of concerns.
+The flake8-one-class plugin enforces a single public class per module
+to encourage modular and maintainable code design
+"""

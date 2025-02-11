@@ -20,6 +20,9 @@
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
 # OR OTHER DEALINGS IN THE SOFTWARE.
 
+"""Entrypoint."""
+
+import ast
 from collections.abc import Generator
 from typing import final
 
@@ -30,7 +33,7 @@ from flake8_one_class.visitor import ModuleVisitor
 class Plugin:
     """Flake8 plugin."""
 
-    def __init__(self, tree) -> None:
+    def __init__(self, tree: ast.AST) -> None:
         """Ctor."""
         self._tree = tree
 

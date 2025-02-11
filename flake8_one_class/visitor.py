@@ -20,6 +20,8 @@
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
 # OR OTHER DEALINGS IN THE SOFTWARE.
 
+"""Class visitor for checking class count in module."""
+
 import ast
 from typing import final
 
@@ -32,7 +34,7 @@ class ModuleVisitor(ast.NodeVisitor):
         """Ctor."""
         self.problems: list[int] = []
 
-    def visit_Module(self, node) -> None:  # noqa: N802, WPS231, C901. Flake8 plugin API
+    def visit_Module(self, node: ast.Module) -> None:  # noqa: N802, WPS231, C901. Flake8 plugin API
         """Visit by modules."""
         classes_count = 0
         for elem in node.body:
