@@ -79,4 +79,4 @@ jobs:
         python3 -m venv lint-venv
         lint-venv/bin/pip install -r lint-requirements.txt
     - name: Run lint
-      run: flake8 flake8_one_class tests
+      run: lint-venv/bin/flake8 flake8_one_class tests
