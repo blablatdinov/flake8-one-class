@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.9', '3.13']
+        python-version: ['3.10', '3.14']
 
     steps:
     - uses: actions/checkout@v6
@@ -55,9 +55,14 @@ jobs:
       uses: actions/setup-python@v6
       with:
         python-version: 3.14
-    - name: Install lint dependencies
-      run: |
-        python3 -m venv lint-venv
-        lint-venv/bin/pip install -r lint-requirements.txt
+    - name: Install Poetry
+      uses: snok/install-poetry@v1.4.1
+      with:
+        virtualenvs-create: true
+        virtualenvs-in-project: true
+        installer-parallel: true
     - name: Run lint
-      run: lint-venv/bin/flake8 flake8_one_class tests
+      run: |
+        poetry install
+        poetry run ruff check flake8_one_class tests
+        poetry run flake8 flake8_one_class tests
