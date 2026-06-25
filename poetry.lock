@@ -675,14 +675,14 @@ files = [
 
 [[package]]
 name = "wemake-python-styleguide"
-version = "1.6.0"
+version = "1.6.2"
 description = "The strictest and most opinionated python linter ever"
 optional = false
 python-versions = "<4.0,>=3.10"
 groups = ["test"]
 files = [
-    {file = "wemake_python_styleguide-1.6.0-py3-none-any.whl", hash = "sha256:11f3d25e83e3edec01c33af85c4e62e4886890b8710fe7af86920575912d14f2"},
-    {file = "wemake_python_styleguide-1.6.0.tar.gz", hash = "sha256:9d834573a9ca089b48b8ce0e8bffd69d33f18be53d4a4667bbbe4438750328e8"},
+    {file = "wemake_python_styleguide-1.6.2-py3-none-any.whl", hash = "sha256:857690cb0e36132e7b3b5d339a11714014d539634ed27cf04cf08107f1c347cb"},
+    {file = "wemake_python_styleguide-1.6.2.tar.gz", hash = "sha256:59c7d52b0677519aeb49714fca558eb93f278d8a7e18eadead455db8620ceb2f"},
 ]
 
 [package.dependencies]
@@ -693,4 +693,4 @@ pygments = ">=2.19,<3.0"
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.10"
-content-hash = "9682ba4fae4c69fe0dded01cf5ba7fbb99422d668bfbb51aa8a2a32c8662c1bb"
+content-hash = "1f0c38574f8c561fbecf96265135ec04967a4e95fb1fe7754f126a559c4d601d"
