@@ -55,9 +55,8 @@ jobs:
       uses: actions/setup-python@v6
       with:
         python-version: 3.14
-    - name: Install lint dependencies
-      run: |
-        python3 -m venv lint-venv
-        lint-venv/bin/pip install -r lint-requirements.txt
     - name: Run lint
-      run: lint-venv/bin/flake8 flake8_one_class tests
+      run: |
+        poetry install
+        poetry run ruff check flake8_one_class tests
+        poetry run flake8 flake8_one_class tests
